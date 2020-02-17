@@ -12,14 +12,15 @@ function sanitazeFormUsername($inputText)
 function sanitazeFormPassword($inputText)
 {
     $inputText =  htmlspecialchars($inputText);
-    return $inputText;
 }
 
 function sanitazeFormString($inputText)
 {
+   
     $inputText =  htmlspecialchars($inputText);
     $inputText =  trim($inputText);
     $inputText =  ucwords($inputText);
+    return $inputText;
 }
 
 
