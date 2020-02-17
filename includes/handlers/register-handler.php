@@ -4,22 +4,31 @@
 
 function sanitazeFormUsername($inputText)
 {
-    $inputText =  htmlspecialchars($inputText);
+    // $inputText =  htmlspecialchars($inputText);
+    $inputText =  strip_tags($inputText);
     $inputText =  trim($inputText);
+    return $inputText;
+}
+
+function sanitazeFormString($inputText)
+{
+
+    $inputText =  strip_tags($inputText);
+    $inputText =  trim($inputText);
+    $inputText =  ucwords($inputText);
     return $inputText;
 }
 
 function sanitazeFormPassword($inputText)
 {
-    $inputText =  htmlspecialchars($inputText);
+    $inputText =  strip_tags($inputText);
 }
 
-function sanitazeFormString($inputText)
+
+function sanitazeFormEmail($inputText)
 {
-   
-    $inputText =  htmlspecialchars($inputText);
+    $inputText =  strip_tags($inputText);
     $inputText =  trim($inputText);
-    $inputText =  ucwords($inputText);
     return $inputText;
 }
 
@@ -31,8 +40,8 @@ if (isset($_POST['registerButton'])) {
     $username = sanitazeFormUsername($_POST['username']);
     $firstName = sanitazeFormString($_POST['firstName']);
     $lastName = sanitazeFormString($_POST['lastName']);
-    $email = sanitazeFormString($_POST['email']);
-    $email2 = sanitazeFormString($_POST['email2']);
+    $email = sanitazeFormEmail($_POST['email']);
+    $email2 = sanitazeFormEmail($_POST['email2']);
     $password = sanitazeFormPassword($_POST['password']);
     $password2 = sanitazeFormPassword($_POST['password2']);
 
