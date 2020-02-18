@@ -22,6 +22,7 @@ function sanitazeFormString($inputText)
 function sanitazeFormPassword($inputText)
 {
     $inputText =  strip_tags($inputText);
+    return $inputText;
 }
 
 

@@ -1,11 +1,12 @@
 <?php
 class Account
 {
-
+    private $con;
     private $errorArray;
 
-    public function __construct()
+    public function __construct($con)
     {
+        $this->con = $con;
         $this->errorArray = array();
     }
 
@@ -20,7 +21,7 @@ class Account
 
         if (empty($this->errorArray)) {
             //Insert into db
-            return true;
+            return $this->insertUserDetails($username, $firstName, $lastName, $email, $password);
         } else {
 
             return false;
@@ -35,16 +36,33 @@ class Account
         return "<span class='errorMessage'>$error</span>";
     }
 
+    private function insertUserDetails($un, $fn, $ln, $email, $pw)
+    {
+        $encryptedPw = md5($pw);
+        $profilePic = "assets\images\profile-pics\head_emerald.png";
+        $date = date("Y-m-d");
+
+        // echo ' '.$un.' '. $fn. ' '. $ln . ' ' .  $email. ' '. $encryptedPw;
+        $result = mysqli_query($this->con, "INSERT INTO users VALUES ('','$un','$fn','$ln','$email','$encryptedPw','$date','$profilePic')");
+        // echo "Error: " . mysqli_error($this->con);
+        return $result;
+    }
+
     private function validateUsername($un)
     {
-        if (strlen($un) >25 || strlen($un) < 5) {
-          
+        if (strlen($un) > 25 || strlen($un) < 5) {
+
             array_push($this->errorArray, Constants::$usernameInvalid);
             return;
         }
 
-        // TODO: check if username exist
 
+        $checkUsernameQuery = mysqli_query($this->con, "select username from users where username = '$un'");
+
+        if (mysqli_num_rows($checkUsernameQuery) != 0) {
+            array_push($this->errorArray, Constants::$usernameTaken);
+            return;
+        }
     }
 
     private function validateFirstName($fn)
@@ -75,8 +93,12 @@ class Account
             return;
         }
 
-        // TODO: check that username hasn't already been udes 
+        $checkEmailQuery = mysqli_query($this->con, "select email from users where email = '$em'");
 
+        if (mysqli_num_rows($checkEmailQuery) != 0) {
+            array_push($this->errorArray, Constants::$emailTaken);
+            return;
+        }
     }
 
     private function validatePasswords($pw, $pw2)
@@ -87,7 +109,6 @@ class Account
         }
         // $regex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=[#?!@$%^*-]).{8,20}$";
         $regex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z!@#$%]{8,20}$/';
-        $a = preg_match($regex, $pw);
         if (!preg_match($regex, $pw)) {
             array_push($this->errorArray, Constants::$passwordInvalid);
             return;
