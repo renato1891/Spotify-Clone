@@ -70,7 +70,7 @@ function getInputValue($name)
                     </p>
                     <p>
                         <label for="email2"> Confirm email </label>
-                        <input id="email2" name="email2" type="email2" placeholder="e.g bart@gmail.com" value="<?php getInputValue('email2') ?>" required>
+                        <input id="email2" name="email2" type="email" placeholder="e.g bart@gmail.com" value="<?php getInputValue('email2') ?>" required>
                     </p>
 
                     <p>
