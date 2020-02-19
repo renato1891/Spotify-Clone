@@ -22,6 +22,8 @@ function getInputValue($name)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Spotify</title>
     <link rel="stylesheet" type="text/css" href="assets\css\register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script  src="assets\js\register.js"></script>
 </head>
 
 <body>
@@ -40,6 +42,10 @@ function getInputValue($name)
                         <input id="loginPassword" name="loginPassword" type="password" required>
                     </p>
                     <button type="submit" name="loginButton">LOG IN</button>
+                    <div class="hasAccountText">
+                        <!-- <a href="#"></a> -->
+                        <span id="hideLogin">Don't have an account yet? Signup here.</span>
+                    </div>
                 </form>
 
                 <form id="registerForm" action="register.php" method="POST">
@@ -85,6 +91,11 @@ function getInputValue($name)
                         <input id="password2" name="password2" type="password" placeholder="Your pasword" required>
                     </p>
                     <button type="submit" name="registerButton">SIGN UP</button>
+
+                    <div class="hasAccountText">
+                        <!-- <a href="#"></a> -->
+                        <span id="hideRegister">Already have an account? Log in here.</span>
+                    </div>
                 </form>
 
             </div>

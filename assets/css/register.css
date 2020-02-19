@@ -103,3 +103,20 @@ html, body {
 #inputContainer button:hover {
     cursor: pointer;
 }
+
+
+.hasAccountText span{
+    font-size: 12px;
+    font-weight: bold;
+}
+.hasAccountText{
+    text-align: center;
+}
+
+#hideLogin,
+
+#hideRegister {
+
+  font-weight: bold;
+
+}
