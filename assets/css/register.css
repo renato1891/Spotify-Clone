@@ -120,3 +120,7 @@ html, body {
   font-weight: bold;
 
 }
+
+#registerForm {
+    display: none;
+}
