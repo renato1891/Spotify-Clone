@@ -1,6 +1,5 @@
 <?php
 include("includes\config.php");
-
 // session_destroy();
 
 
@@ -16,13 +15,17 @@ if (isset($_SESSION['userLoggedIn'])) {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Wellcome</title>
-
+    <link rel="stylesheet" href="assets\css\style.css">
 </head>
 
 <body>
-    Hello!
+    <div id="nowPlayingBarContainer">
+        <div id="nowPlayingBar">
+
+        </div>
+    </div>
 </body>
 
 </html>
